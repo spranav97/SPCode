@@ -1,4 +1,4 @@
-from detect import detect_code
+#from detect import detect_code
 from orientation import orientation
 
 import cv2
