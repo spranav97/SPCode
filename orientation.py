@@ -1,4 +1,5 @@
 import cv2
+from math import atan,degrees
 
 
 def shape(c):
@@ -37,13 +38,21 @@ def orientation(i):
                 print(inside[1], out[1])
                 '''
                 #print(h)
-                cv2.arrowedLine(j, out[1], inside[1], (0, 0, 255), 1)
-                cv2.circle(j, inside[1], 20, (255, 0, 0), 2)
+                # cv2.arrowedLine(j, out[1], inside[1], (0, 0, 255), 1)
+                # cv2.circle(j, inside[1], 20, (255, 0, 0), 2)
                 cv2.drawContours(j,cnts[h[0][h[0][m][-1]][-1]],-1,(0,0,255),2)
-                cv2.drawContours(j,cnts[h[0][m][-1]],-1,(255,0,0),2)
+                # cv2.drawContours(j,cnts[h[0][m][-1]],-1,(255,0,0),2)
+                try:
+                    cv2.putText(j,str(degrees(
+                        atan(
+                            (out[1][1]-inside[1][1])/(out[1][0]-inside[1][0])
+                        )
+                    )-45),(10,30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 1, cv2.LINE_AA)
+                except:print(90)
             # cv2.waitKey(0)
-    cv2.imshow("code", j)
+    
     cv2.imshow("gray", t)
+    cv2.imshow("code", j)
 
 
 """i=cv2.imread('pic2.png')
